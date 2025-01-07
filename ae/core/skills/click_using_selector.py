@@ -19,7 +19,7 @@ async def click(selector: Annotated[str, "The properly formed query selector str
     """
     Executes a click action on the element matching the given query selector string within the currently open web page.
     If there is no page open, it will raise a ValueError. An optional wait time can be specified before executing the click logic. Use this to wait for the page to load especially when the last action caused the DOM/Page to load.
-
+    该函数接收一个 CSS 选择器，并执行点击操作。如果页面加载较慢，可以提供一个可选的等待时间。它还检测页面的 DOM 变化，并返回包含点击操作结果的消息。
     Parameters:
     - selector: The query selector string to identify the element for the click action.
     - wait_before_execution: Optional wait time in seconds before executing the click event logic. Defaults to 0.0 seconds.
@@ -58,7 +58,7 @@ async def click(selector: Annotated[str, "The properly formed query selector str
         return f"Success: {result['summary_message']}.\n As a consequence of this action, new elements have appeared in view: {dom_changes_detected}. This means that the action to click {selector} is not yet executed and needs further interaction. Get all_fields DOM to complete the interaction."
     return result["detailed_message"]
 
-
+# 该函数执行点击操作并返回操作的结果，包括操作的简短描述和详细信息。
 async def do_click(page: Page, selector: str, wait_before_execution: float) -> dict[str, str]:
     """
     Executes the click action on the element with the given selector within the provided page.
@@ -129,7 +129,7 @@ async def do_click(page: Page, selector: str, wait_before_execution: float) -> d
         msg = f"Unable to click element with selector: \"{selector}\" since the selector is invalid. Proceed by retrieving DOM again."
         return {"summary_message": msg, "detailed_message": f"{msg}. Error: {e}"}
 
-
+# 检查页面上是否存在匹配的元素。
 async def is_element_present(page: Page, selector: str) -> bool:
     """
     Checks if an element is present on the page.
@@ -144,7 +144,7 @@ async def is_element_present(page: Page, selector: str) -> bool:
     element = await page.query_selector(selector)
     return element is not None
 
-
+# 使用 Playwright 提供的 click() 方法对元素执行点击操作。
 async def perform_playwright_click(element: ElementHandle, selector: str):
     """
     Performs a click action on the element using Playwright's click method.
@@ -159,7 +159,7 @@ async def perform_playwright_click(element: ElementHandle, selector: str):
     logger.info(f"Performing first Step: Playwright Click on element with selector: {selector}")
     await element.click(force=False, timeout=200)
 
-
+# 使用 JavaScript 对指定的元素执行点击操作。通过执行浏览器端的 JavaScript 代码来模拟点击。
 async def perform_javascript_click(page: Page, selector: str):
     """
     Performs a click action on the element using JavaScript.
