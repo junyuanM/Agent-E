@@ -9,7 +9,8 @@ from ae.config import PROJECT_SOURCE_ROOT
 from ae.utils.js_helper import escape_js_message
 from ae.utils.logger import logger
 from ae.utils.ui_messagetype import MessageType
-
+# 这段代码定义了一个名为 UIManager 的类，专门用于管理网页应用中的 UI 覆盖层（overlay）。该类与
+#Playwright（一个用于自动化浏览器的库）协作，主要负责覆盖层的显示、聊天历史记录的管理和更新、以及 UI 状态的更新。
 
 class UIManager:
     """
@@ -38,7 +39,7 @@ class UIManager:
         """
         self.add_default_system_messages()
 
-
+    #处理页面导航事件。当页面加载完成时，注入 JavaScript 代码来管理 UI 覆盖层的状态（例如显示或隐藏），并更新覆盖层中的聊天历史。
     async def handle_navigation(self, frame: Frame):
         """
         Handles navigation events by injecting JavaScript code into the frame to manage the overlay state
@@ -123,7 +124,8 @@ class UIManager:
         """
         Updates the chat history in the overlay. If the overlay is expanded and not currently being updated,
         it clears existing messages and adds them fresh from the conversation history.
-
+        更新覆盖层中的聊天历史记录。
+        如果覆盖层处于展开状态且当前没有其他更新正在进行中，它会清空现有消息并重新加载来自会话历史的数据。
         Args:
             frame_or_page (Frame | Page): The Playwright Frame or Page object to update the chat history in.
         """
