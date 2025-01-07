@@ -9,7 +9,7 @@ from ae.core.skills.press_key_combination import do_press_key_combination
 from ae.utils.logger import logger
 from ae.utils.ui_messagetype import MessageType
 
-
+#这段代码定义了一个异步函数 enter_text_and_click，它结合了两种操作：首先在页面上的某个输入框中输入文本，然后点击另一个元素。这个功能适用于自动化的 Web 表单填充和交互操作
 async def enter_text_and_click(
     text_selector: Annotated[str, "The properly formatted DOM selector query, for example [mmid='1234'], where the text will be entered. Use mmid attribute."],
     text_to_enter: Annotated[str, "The text that will be entered into the element specified by text_selector."],
