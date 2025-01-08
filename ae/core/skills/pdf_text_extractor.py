@@ -9,7 +9,8 @@ from ae.core.playwright_manager import PlaywrightManager
 from ae.utils.logger import logger
 from ae.utils.ui_messagetype import MessageType
 
-
+# 从指定 URL 下载 PDF 文件，并从中提取文本。
+# 流程包括下载 PDF、使用 pdfplumber 提取文本、返回提取的文本内容以及清理临时文件
 async def extract_text_from_pdf(pdf_url: Annotated[str, "The URL of the PDF file to extract text from."]) -> Annotated[str, "All the text found in the PDF file."]:
     """
     Extract text from a PDF file.
