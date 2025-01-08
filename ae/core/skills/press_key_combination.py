@@ -10,7 +10,7 @@ from ae.utils.dom_mutation_observer import unsubscribe  # type: ignore
 from ae.utils.logger import logger
 from ae.utils.ui_messagetype import MessageType
 
-
+# 通过 Playwright 模拟按键操作，具体功能是模拟按下一个或多个键
 async def press_key_combination(key_combination: Annotated[str, "The key to press, e.g., Enter, PageDown etc"]) -> str:
     """
     Presses a key combination on the current active page managed by PlaywrightManager.
