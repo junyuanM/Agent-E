@@ -7,7 +7,8 @@ from ae.core.playwright_manager import PlaywrightManager
 from ae.utils.logger import logger
 from ae.utils.ui_messagetype import MessageType
 
-
+# 通过 Playwright 打开指定的 URL，在浏览器中导航到该页面，并等待页面加载完成。
+# 加载完成后，它会返回该页面的 URL 和标题。代码还处理了一些错误和超时情况，并提供了截图和日志记录功能
 async def openurl(url: Annotated[str, "The URL to navigate to. Value must include the protocol (http:// or https://)."],
             timeout: Annotated[int, "Additional wait time in seconds after initial load."] = 3) -> Annotated[str, "Returns the result of this request in text form"]:
     """
