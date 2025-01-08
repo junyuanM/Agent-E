@@ -12,7 +12,7 @@ from ae.utils.get_detailed_accessibility_tree import do_get_accessibility_info
 from ae.utils.logger import logger
 from ae.utils.ui_messagetype import MessageType
 
-
+# 通过 Playwright 库与浏览器交互，从网页的 DOM 中提取不同类型的内容。支持三种内容提取方式：仅文本、输入字段和所有字段
 async def get_dom_with_content_type(
     content_type: Annotated[str, "The type of content to extract: 'text_only': Extracts the innerText of the highest element in the document and responds with text, or 'input_fields': Extracts the text input and button elements in the dom."]
     ) -> Annotated[dict[str, Any] | str | None, "The output based on the specified content type."]:
@@ -77,7 +77,7 @@ async def get_dom_with_content_type(
     await browser_manager.notify_user(user_success_message, message_type=MessageType.ACTION)
     return extracted_data # type: ignore
 
-
+# 从网页中提取文本内容，并过滤掉一些指定的元素，同时包括图像的 alt 文本
 async def get_filtered_text_content(page: Page) -> str:
     text_content = await page.evaluate("""
         () => {
